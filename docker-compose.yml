@@ -1,0 +1,68 @@
+version: "2"
+
+services:
+  MySQL:
+    image: mysql:8.0
+    container_name: MySQL 
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./storage/mysql-data:/var/lib/mysql
+      - ./dataset:/tmp/dataset
+    env_file:
+      - .env
+    networks:
+      - stream_net
+  
+  zookeeper:
+    container_name: zookeeper
+    image: docker.io/bitnami/zookeeper:3.7
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zookeeper_data:/bitnami"
+    env_file:
+      - .env
+    networks:
+      - stream_net
+
+  kafka:
+    container_name: kafka
+    image: docker.io/bitnami/kafka:2
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    volumes:
+      - "kafka_data:/bitnami"
+    networks:
+      - stream_net
+    env_file:
+      - .env
+    depends_on:
+      - zookeeper
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafka-ui
+    ports:
+      - "18080:8080"
+    restart: always
+    env_file:
+      - .env
+    depends_on:
+      - kafka
+      - zookeeper
+    networks:
+      - stream_net
+
+  
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+networks:
+  stream_net:
+    driver: bridge
+    name: stream_net

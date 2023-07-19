@@ -1,0 +1,4 @@
+kafka-python==2.0.2
+mysql-connector-python==8.0.31
+numpy==1.25.1
+pandas==2.0.3
