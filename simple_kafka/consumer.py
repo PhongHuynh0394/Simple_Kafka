@@ -1,7 +1,5 @@
 from kafka import KafkaConsumer
 
-
-TOPIC = 'KafkaExplored'
 TOPIC = 'toll'
 consumer = KafkaConsumer(TOPIC, bootstrap_servers='localhost:9093')
 for msg in consumer:

@@ -4,7 +4,6 @@ from time import sleep, time, ctime
 
 producer = KafkaProducer(bootstrap_servers='localhost:9093')
 
-TOPIC = 'KafkaExplored'
 TOPIC = 'toll'
 try:
     for _ in range(100):
