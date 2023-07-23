@@ -4,7 +4,7 @@ from time import sleep, time, ctime
 
 producer = KafkaProducer(bootstrap_servers='localhost:9093')
 
-TOPIC = 'toll'
+TOPIC = 'Test_topic'
 try:
     for _ in range(100):
         the_dt = str(datetime.datetime.utcnow())

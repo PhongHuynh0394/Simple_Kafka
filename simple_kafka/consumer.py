@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 
-TOPIC = 'toll'
+TOPIC = 'Test_topic'
 consumer = KafkaConsumer(TOPIC, bootstrap_servers='localhost:9093')
 for msg in consumer:
     topic = msg[0]

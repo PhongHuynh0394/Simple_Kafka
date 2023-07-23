@@ -5,7 +5,7 @@ while True:
     connection = mysql.connector.connect(
         host='localhost',
         user='root',
-        password='0409',
+        password='0409', #base on env file
         database='my_database'
     )
     cursor = connection.cursor()
